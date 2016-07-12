@@ -1,6 +1,6 @@
 {
   "name": "sclip-x",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "dependencies": {
@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "install": "node install.js && ./node_modules/.bin/pm2 start ./node_modules/.bin/sclip -- --no_notify"
+    "install": "node install.js && ./node_modules/.bin/pm2 start ./node_modules/.bin/sclip -s -- --no_notify"
   },
   "author": "",
   "license": "ISC"

@@ -1,6 +1,8 @@
 var path = require('path');
 var fs = require('fs');
 var store = require('sclip/store');
+var pm2 = require('pm2');
+
 
 function start () {
     store.getConfig({
@@ -15,7 +17,6 @@ function start () {
             message: 'Enter your Wilddog url:'
         }
     }).then(cfg => {
-        console.log(cfg);
         setAutoRun();
     });
 }
@@ -31,7 +32,7 @@ function setAutoRun () {
             if (content.indexOf('sclip') > 0) {
                 return;
             }
-            content += '\n\n' + pm2Path + ' start ' + sclipPath + ' -- --no_notify > ~/.sclip/.log';
+            content += '\n\n' + pm2Path + ' start ' + sclipPath + ' -s -- --no_notify';
             fs.writeFileSync(zshrcPath, content);
         }
     })
