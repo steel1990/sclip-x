@@ -11,10 +11,15 @@ function start () {
             type: 'password',
             message: 'Enter your password:'
         },
-        wilddogUrl: {
-            key: 'wilddogUrl',
+        wilddogDomain: {
+            key: 'wilddogDomain',
             type: 'input',
-            message: 'Enter your Wilddog url:'
+            message: 'Enter your Wilddog domain:'
+        },
+        wilddogPath: {
+            key: 'wilddogPath',
+            type: 'input',
+            message: 'Enter your Wilddog path(no .json):'
         }
     }).then(cfg => {
         setAutoRun();
