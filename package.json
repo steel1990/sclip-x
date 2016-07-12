@@ -1,0 +1,16 @@
+{
+  "name": "sclip-x",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "pm2": "^1.1.3",
+    "sclip": "^1.0.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "install": "node install.js && ./node_modules/.bin/pm2 start ./node_modules/sclip && vi ~/.zsh_history"
+  },
+  "author": "",
+  "license": "ISC"
+}
