@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "install": "node install.js && ./node_modules/.bin/pm2 start ./node_modules/sclip && vi ~/.zsh_history"
+    "install": "node install.js && ./node_modules/.bin/pm2 start ./node_modules/.bin/sclip -- --no_notify"
   },
   "author": "",
   "license": "ISC"

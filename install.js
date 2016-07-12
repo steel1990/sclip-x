@@ -1,9 +1,8 @@
+var path = require('path');
+var fs = require('fs');
 var store = require('sclip/store');
 
-var pwd = store.getLocalConfigByKey('pwd');
-var wilddogUrl = store.getLocalConfigByKey('wilddogUrl');
-
-if (!pwd || !wilddogUrl) {
+function start () {
     store.getConfig({
         pwd: {
             key: 'pwd',
@@ -17,5 +16,25 @@ if (!pwd || !wilddogUrl) {
         }
     }).then(cfg => {
         console.log(cfg);
+        setAutoRun();
     });
 }
+
+function setAutoRun () {
+    var HOME = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
+    var pm2Path = path.resolve(path.join(__dirname, 'node_modules/.bin/pm2'));
+    var sclipPath = path.resolve(path.join(__dirname, 'node_modules/.bin/sclip'));
+    var zshrcPath = path.join(HOME, '.zshrc');
+    fs.stat(zshrcPath, function (err, stats) {
+        if (!err) {
+            var content = String(fs.readFileSync(zshrcPath));
+            if (content.indexOf('sclip') > 0) {
+                return;
+            }
+            content += '\n\n' + pm2Path + ' start ' + sclipPath + ' -- --no_notify > ~/.sclip/.log';
+            fs.writeFileSync(zshrcPath, content);
+        }
+    })
+}
+
+start();
